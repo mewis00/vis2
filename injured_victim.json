@@ -1,0 +1,82 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 300,
+    "height": 300,
+    "title": "Mass Shootings in America (Excluding Las Vegas Strip Massacare) ",
+    "data": {
+      "url": "data/new_data.csv"
+    },
+    "params": [
+      {
+        "name": "Victims_Above",
+        "value": 0,
+        "bind": {
+          "input": "range",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "name": "Minimum Victims: "
+        }
+      }
+    ],
+    "transform": [
+      {"filter": "datum.Victims > Victims_Above"}
+  
+  
+    ],
+    "encoding": {
+      "x": {
+        "field": "Injured",
+        "type": "quantitative",
+        "title": "Injured People",
+        "scale": {"type": "linear", "domain": [0, 80]}
+      },
+      "y": {
+        "field": "Fatalities",
+        "type": "quantitative"
+      }
+    },
+    "layer": [
+      {
+        "mark": "circle",
+        "encoding": {
+            "size": { 
+                "field": "Victims",
+                "type": "quantitative",
+                "title":"Victims",
+                "scale": {
+                    "type": "threshold",
+                    "domain": [10,20,30,50,70],
+                    "range": [10, 50, 150, 200, 300]
+            },
+            "legend": {"format": ".1s"}
+            },
+          "color": {
+            "field": "Location",
+            "type": "ordinal",
+            "scale": {
+              "domain": [
+                "Military",
+                "Religious",
+                "School",
+                "Workplace",
+                "Airport",
+                "Other",
+                "Unknown"
+              ],
+              "range": ["#category10"
+              ]
+            }
+          },
+          "opacity": {"value": 0.6},
+          "tooltip": [
+            {"field": "Case", "type": "ordinal"},
+            {"field": "Date","type": "ordinal"},
+            {"field": "Fatalities", "type": "nominal"},
+            {"field": "Injured", "type": "nominal"},
+            {"field": "Victims", "type": "nominal"}
+        ]
+        }
+      }
+    ]
+  }

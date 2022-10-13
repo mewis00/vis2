@@ -1,0 +1,64 @@
+html, body {
+    height: 100%;
+}
+#title{
+    background-color: aquamarine;
+    text-align: center;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+#overview{
+    background-color: aqua;
+    text-align: center;
+    padding: 3%;
+}
+
+#body1{
+    text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: purple;
+}
+
+#body1h3{
+   color: red; 
+}
+
+    #mental_health{
+        background-color: antiquewhite;
+    }
+
+    #gender{
+        background-color: blueviolet;
+    }
+
+#divider{
+    background-color: aqua;
+    text-align: center;
+}
+
+#body2 {
+    text-align: center;
+}
+
+    #race{
+        background-color: red;
+    }
+
+    #body2h3{
+        color: red; 
+    }
+
+    #race_desc{
+        background-color: orange;
+    }
+
+
+
+#body3{
+    text-align: center;
+    padding-left: 5%;
+    padding-right: 5%;
+    background-color: pink;
+}

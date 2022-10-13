@@ -1,0 +1,68 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 400,
+    "height": 400,
+    "data": {
+      "url": "data/new_data.csv"
+    },
+  
+    "config": {
+      "view": {
+         "stroke": "transparent"
+      }
+    },
+    
+  
+  
+  "layer": [
+    {"mark": "bar",
+    
+    "encoding": {
+      "x": {
+        "field": "Gender",
+        "type": "nominal",
+        "title": null,
+        "axis": {
+          "domain": false,
+          "grid": false,
+          "ticks": false,
+          "labelAngle": 0}
+      },
+      "y": {
+        "aggregate": "count",
+        "type": "quantitative",
+        "title": "Shootings Committed",
+        "axis": {"domain": false, "grid": false, "ticks": false}
+      },
+      "color":{
+        "field": "Location",
+        "type": "nominal",
+        "scale": {
+          "domain": [
+            "Military",
+            "Religious",
+            "School",
+            "Workplace",
+            "Airport",
+            "Other",
+            "Unknown"
+          ],
+          "range": [
+            "green",
+            "orange",
+            "pink",
+            "brown",
+            "grey",
+            "blue",
+            "teal"
+          ]
+        }
+  
+      },
+      "text": {"aggregate": "count", "field": "Loations", "type" : "quantitative"}
+    }
+    }
+  ]
+  }
+  
+  

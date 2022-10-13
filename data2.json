@@ -1,0 +1,109 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 1000,
+    "height": 1000,
+    "title": "Mass Shottings in the USA",
+    "projection": {"type": "albersUsa"},
+
+    "params": [
+        {
+          "name": "Minimum_Victims",
+          "value": 0,
+          "bind": {
+            "input": "range",
+            "min": 1,
+            "max": 75,
+            "step": 1,
+            "name": "Minimum Victims: "
+          }
+        }
+      ],
+      "transform": [
+        {"filter": "datum.Victims > Minimum_Victims"}
+      ],
+
+    "layer": [
+        {
+        "data": {
+            "url": "data/cb_2018_us_state_500k.json",
+            "format": {
+                "type": "topojson", 
+                "feature":"cb_2018_us_state_500k"
+            }
+        },
+            
+        "mark": {
+            "type": "geoshape", 
+            "fill": "lightgray", 
+            "stroke":"white"
+        }
+        },
+        {
+            "mark": "text",
+            "encoding": { 
+                "text": {"field": "Title", "type": "nominal"},
+                "longitude": {
+                    "field": "Longitude", 
+                    "type": "quantitative"
+                },
+                "latitude": {
+                    "field": "Latitude", 
+                    "type":"quantitative"
+                },
+                "size": {"value" :10},
+                "color": {"value": "black"},
+                "opacity": {"value": 1}
+            }
+        },
+        
+        {
+            "data": {
+                "url":"data/raw_data.csv"
+            },
+
+            "mark": {
+                "type": "circle"
+            },
+
+            "encoding": {
+                "longitude": {
+                    "field": "Longitude", 
+                    "type": "quantitative"
+                },
+                "latitude": {
+                    "field": "Latitude", 
+                    "type":"quantitative"
+                },
+                "size": {
+                    "field": "Victims",
+                    "type": "quantitative",
+                    "title": "Victims",
+                    "scale": {
+                        "domain": [0, 70]
+                    }
+                },
+                "color": {
+                    "field": "Gender",
+                    "type": "ordinal",
+                    "title": "Gender",
+                    "scale": {
+                        "range": [
+                            "pink", 
+                            "blue", 
+                            "yellow"
+                            ]
+                    }
+                },
+                "tooltip": [
+                    {"field": "Title", "type": "ordinal"},
+                    {"field": "Date","type": "ordinal"},
+                    {"field": "Fatalities", "type": "nominal"},
+                    {"field": "Injured", "type": "nominal"},
+                    {"field": "Victims", "type": "nominal"}
+                ]
+            }
+        }
+    ]
+}
+        
+        

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 400,
+  "data": {
+    "url": "data/new_data.csv"
+  },
+  "config": {
+    "view": {
+       "stroke": "transparent"
+    }
+  },
+
+ "mark": "bar",
+
+  "encoding": {
+    "y": {
+      "field": "Race",
+      "type": "nominal",
+      "title": "Race",
+      "axis": {
+        "domain": false,
+        "grid": false,
+         "ticks": false,
+         "labelAngle": 0},
+      "sort":"-x"
+    },
+    "x": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "title": "Shootings Committed",
+      "axis": {"domain": false, "grid": false, "ticks": false}
+    },
+    "tooltip": [
+      {"field": "Race", "title": "Racial Background"},
+      {"aggregate": "count", "field": "Race", "type": "nominal", "title": "Number of Cases"}
+  ]
+  }
+}

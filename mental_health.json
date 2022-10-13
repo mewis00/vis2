@@ -1,0 +1,108 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 300,
+    "height": 300,
+    "resolve": {"scale": {"color": "independent"}},
+    "data": {
+      "url": "data/new_data.csv"
+    },
+    "config": {
+      "view": {
+         "stroke": "transparent"
+      }
+    },
+    "layer" :[
+
+   {"mark": "bar",
+
+    "encoding": {
+      "x": {
+        "field": "prior_signs_mental_health_issues",
+        "type": "nominal",
+        "title": "Mental Health Issues",
+        "axis": {
+          "domain": false,
+          "grid": false,
+           "ticks": false,
+           "labelAngle": 0},
+        "sort":"-y"
+      },
+      "y": {
+        "aggregate": "count",
+        "type": "quantitative",
+        "title": "Shootings Committed",
+        "axis": {"domain": false, "grid": false, "ticks": false}
+      },
+      "color":{
+        "field": "weapons_obtained_legally",
+        "type": "nominal",
+        "scale":{
+          "domain":[
+            "Yes",
+            "No",
+            "Unknown",
+            "TBD"
+          ],
+          "range":[
+            "green",
+            "red",
+            "teal",
+            "grey"
+          ]
+        },
+        "legend":{
+          "title":"Weapons Purchased Legally"
+        }
+
+      },
+      "tooltip": [
+        {"field": "prior_signs_mental_health_issues", "title": "Mental Health"},
+        {"aggregate": "count", "field": "prior_signs_mental_health_issues", "type": "nominal", "title": "Number of Cases"},
+        {"aggregate":"sum","field": "Percentage", "title": "Percentage", "format":".2f" }
+    ]
+    }
+  },
+  {"mark": {
+    "type":"text",
+    "color": "black",
+    "dy":8
+  },
+  "encoding": {
+    "detail":{
+      "aggregate": "count",
+      "field":"weapons_obtained_legally",
+      "type":"quantitative" 
+    },
+    "text":{"condition": {
+      "test": "datum['prior_signs_mental_health_issues'] == 'No' || datum['prior_signs_mental_health_issues'] == 'Unclear' && datum['weapons_obtained_legally'] != 'No' || datum['prior_signs_mental_health_issues'] == 'Yes' && datum['weapons_obtained_legally'] != 'TBD'",
+      "aggregate": "count",
+      "field": "Location", 
+      "type": "quantitative"
+
+    },
+    "value": ""
+  },
+    "x": {
+      "field": "prior_signs_mental_health_issues",
+      "type": "nominal"
+    },
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "stack": "zero",
+      "title": "Shootings Committed",
+      "axis": {"domain": false, "grid": false, "ticks": false}
+    },
+    "color":{
+      "field": "weapons_obtained_legally",
+      "type": "nominal",
+      "scale": {
+        "range": ["white"]},
+      "legend" : null
+
+    }
+  }
+}
+]
+  
+  }

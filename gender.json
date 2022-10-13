@@ -1,0 +1,114 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width":300,
+  "height": 330,
+  "resolve": {"scale": {"color": "independent"}},
+  "data": {
+    "url": "data/new_data.csv"
+  },
+
+  "config": {
+    "view": {
+       "stroke": "transparent"
+    }
+  },
+  
+
+
+"layer": [
+  {"mark": "bar",
+  
+  "encoding": {
+    "x": {
+      "field": "Gender",
+      "type": "nominal",
+      "title": null,
+      "axis": {
+        "domain": false,
+        "grid": false,
+        "ticks": false,
+        "labelAngle": 0}
+
+    },
+    "y": {
+      "aggregate": "count",
+      "type": "quantitative",
+      "stack": "zero",
+      "title": "Shootings Committed",
+      "axis": {"domain": false, "grid": false, "ticks": false}
+    },
+    "color":{
+      "field": "Location",
+      "type": "nominal",
+      "scale": {
+        "domain": [
+          "Military",
+          "Religious",
+          "School",
+          "Workplace",
+          "Airport",
+          "Other",
+          "Unknown"
+        ],
+        "range": [
+          "green",
+          "orange",
+          "pink",
+          "brown",
+          "grey",
+          "blue",
+          "teal"
+        ]
+      }
+
+    },
+    "tooltip": [
+      {"field": "Location"},
+      {"aggregate": "count", "field": "Gender", "type": "nominal", "title": "Number of Cases"}
+  ]
+  }
+  },
+  {"mark": {"type": "text", "align":"center", "dy" : 10},
+      "encoding": {
+        "x": {
+          "field": "Gender",
+          "type": "nominal",
+          "title": null,
+          "axis": {
+            "domain": false,
+            "grid": false,
+            "ticks": false,
+            "labelAngle": 0}
+        },
+        "y": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "stack": "zero",
+          "title": "Shootings Committed",
+          "axis": {"domain": false, "grid": false, "ticks": false}
+        },
+        "color":{
+          "field": "Location",
+          "type": "nominal",
+          "scale": {
+            "range": ["white"]},
+          "legend" : null
+    
+        },
+        "detail": {"aggregate": "count", 
+        "field": "Location", 
+        "type": "quantitative"
+        },
+        "text":{"condition": {
+          "test": "datum['Location'] == 'Workplace'  && datum['Gender'] == 'Male'|| datum['Location'] == 'Other' && datum['Gender'] == 'Male' || datum['Location'] == 'Religious'  && datum['Gender'] == 'Male' || datum['Location'] == 'Military'  && datum['Gender'] == 'Male' || datum['Location'] == 'School' && datum['Gender'] == 'Male'",
+          "aggregate": "count",
+          "field": "Location", 
+          "type": "quantitative"
+
+        },
+        "value": ""} 
+    }
+  }
+]
+}
+
