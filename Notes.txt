@@ -1,0 +1,22 @@
+Took states data from https://www.census.gov/geographies/mapping-files/time-series/geo/carto-boundary-file.html
+Converted the data to a topoJson here: https://mapshaper.org/
+
+
+USA Census data = https://www.census.gov/quickfacts/fact/table/US/RHI125221 
+
+Layout:
+
+High Level Information:
+- Gender Split
+- Mental Health
+- Race 
+
+Map locations
+- Fatalities
+
+Bubble Plot
+- Location Type with Select Filter
+
+Deeper Insight section
+- 3 Highest victim locations w/ more in depth information
+
